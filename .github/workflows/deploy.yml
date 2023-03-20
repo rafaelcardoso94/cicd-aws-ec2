@@ -39,6 +39,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Generate General Tag(Run Date and Github Run Number)
+        run: echo "GENERAL_TAG=$(date +'%Y%m%d_'$GITHUB_RUN_NUMBER)" >> $GITHUB_ENV
+
       - name: test
         uses: appleboy/ssh-action@master
         with:
@@ -46,6 +49,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
           script: |
-            ls -lha 
-            pwd
+            export GENERAL_TAG=${{env.GENERAL_TAG}}
+            echo $GENERAL_TAG
+
+
+
 
