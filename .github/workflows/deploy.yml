@@ -50,7 +50,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }} 
           script: |
             export GENERAL_TAG=${{env.GENERAL_TAG}}
-            echo $GENERAL_TAG
+            sh scripts/deploy.sh
 
 
 
