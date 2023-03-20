@@ -29,10 +29,9 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: amarassist
-          GENERAL_TAG: ${{env.GENERAL_TAG}}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$GENERAL_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$GENERAL_TAG
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{env.GENERAL_TAG}} .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{env.GENERAL_TAG}}
 
   deploy:
     runs-on: ubuntu-latest
