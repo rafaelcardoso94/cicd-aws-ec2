@@ -1,0 +1,23 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-hml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: test
+        uses: appleboy/ssh-action@master
+        with:
+          host: ec2-54-159-3-227.compute-1.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          script: |
+            ls -lha 
+            pwd
+            mkdir teste
